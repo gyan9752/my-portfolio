@@ -1,0 +1,25 @@
+/* Pure page ka default arrow cursor hide karne ke liye */
+html, body {
+  cursor: none !important;
+}
+a, button, input, textarea, [role="button"] {
+  cursor: none !important;
+}
+
+/* Custom Rocket Style */
+.rocket-cursor {
+  position: fixed;
+  font-size: 24px;
+  pointer-events: none; /* Takki niche ke clicks block na hon */
+  z-index: 99999;
+  transform: translate(-30%, -30%) rotate(0deg);
+  transition: transform 0.15s ease-out, filter 0.2s ease;
+  filter: drop-shadow(0 0 4px rgba(74, 222, 128, 0.3)); /* Light green glow */
+}
+
+/* Jab mouse link ya button par jaye (Boost Mode) */
+.rocket-cursor.rocket-boost {
+  font-size: 28px;
+  transform: translate(-30%, -30%) scale(1.2) rotate(-15deg);
+  filter: drop-shadow(0 0 12px #4ade80); /* Sharp Green Neon Glow */
+}
