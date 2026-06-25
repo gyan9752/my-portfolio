@@ -1,6 +1,6 @@
 
 import Navbar from "./components/navbar/navbar.jsx";
-import Hero from "./components/Hero/Hero.jsx"; // Hero capital, hero.jsx small
+import Hero from "./components/Hero/hero.jsx"; // Hero capital, hero.jsx small
 import About from "./components/about/about.jsx";
 import Skills from "./components/skills/skill.jsx";
 import Project from "./components/project/project.jsx";
