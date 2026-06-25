@@ -1,0 +1,108 @@
+/* ==========================================
+   TOP NAVBAR STYLE
+   ========================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(11, 19, 43, 0.7); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.05);
+}
+
+/* Logo Box Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Icon aur text ke beech ka perfect space */
+}
+
+/* New Icon Custom Styling */
+.nav-logo-icon {
+  font-size: 24px;
+  color: #64ffda; /* Premium Cyan color for logo icon */
+  filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.3));
+}
+
+/* Brand Logo Text */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.logo span {
+  color: #64ffda;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #ccd6f6;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 5px 0;
+  display: inline-block;
+}
+
+.navbar a:hover {
+  color: #64ffda;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #64ffda;
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ==========================================
+   MOBILE VIEWPORT BREAKPOINT
+   ========================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .navbar ul {
+    gap: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+  }
+
+  .nav-logo-icon {
+    font-size: 20px;
+  }
+}
