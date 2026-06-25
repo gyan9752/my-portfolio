@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./Hero.css";
+//import "./Hero.css";
+import "./hero.css"; 
 import { Typewriter } from "react-simple-typewriter";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import profile from "../../assets/image/photo.jpeg";
