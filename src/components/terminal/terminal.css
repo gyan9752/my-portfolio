@@ -1,0 +1,188 @@
+/* ==========================================
+   FLOATING TERMINAL TOGGLE BUTTON (BLINKING)
+   ========================================== */
+
+.terminal-toggle-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  right: auto;
+  width: 55px;
+  height: 55px;
+  background: #112240;
+  border: 2px solid #64ffda;
+  color: #64ffda;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999999 !important; /* Force button above everything */
+  pointer-events: auto !important;
+  box-shadow: 0 4px 20px rgba(100, 255, 218, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: terminalPulse 2s infinite;
+}
+
+.terminal-toggle-btn:hover {
+  background: #64ffda;
+  color: #0a192f;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 25px #64ffda;
+}
+
+/* Green blinking live dot indicator */
+.blink-dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background: #27c93f;
+  border-radius: 50%;
+  border: 1px solid #112240;
+}
+
+@keyframes terminalPulse {
+  0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(100, 255, 218, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+}
+
+/* ==========================================
+   TERMINAL POPUP OVERLAY MODAL (FIXED POSITION)
+   ========================================== */
+
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 25, 47, 0.8) !important; /* Full backdrop block background overlay */
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999999 !important; /* Force popup to frontmost layer */
+  padding: 20px;
+  pointer-events: auto !important;
+}
+
+/* Terminal Window Box Structure */
+.terminal-window {
+  background: #0b132b !important;
+  border: 1px solid rgba(100, 255, 218, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  max-width: 720px;
+  overflow: hidden;
+  text-align: left;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.terminal-header {
+  background: #112240;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-buttons .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.terminal-buttons .close { background: #ff5f56; }
+.terminal-buttons .minimize { background: #ffbd2e; }
+.terminal-buttons .maximize { background: #27c93f; }
+
+.terminal-title {
+  color: #8892b0;
+  font-size: 0.85rem;
+  font-family: 'Fira Code', monospace;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.terminal-close-x {
+  background: transparent;
+  border: none;
+  color: #8892b0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+
+.terminal-body {
+  padding: 25px;
+  height: 360px;
+  overflow-y: auto;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #0b132b !important;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+  margin-bottom: 8px;
+}
+.terminal-line.system { color: #8892b0; }
+.terminal-line.user { color: #fff; font-weight: 600; }
+.terminal-line.reply { color: #64ffda; }
+.terminal-line.error { color: #ff5f56; }
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.terminal-prompt { color: #fff; font-weight: bold; }
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #64ffda;
+  font-family: inherit;
+  caret-color: #64ffda;
+}
+
+/* Multi-theme specific button support layers */
+body.theme-purple .terminal-toggle-btn {
+  border-color: #a855f7 !important;
+  color: #a855f7 !important;
+}
+body.theme-black .terminal-toggle-btn {
+  border-color: #22c55e !important;
+  color: #22c55e !important;
+}
+
+/* Mobile responsive layer breakpoints */
+@media (max-width: 768px) {
+  .terminal-toggle-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+  }
+}

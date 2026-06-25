@@ -1,0 +1,152 @@
+/* ==========================================
+   PROJECTS SECTION STYLE
+   ========================================== */
+
+/* Projects Section Container */
+.projects {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* 2 Column Layout Grid (Desktop) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 30px;
+}
+
+/* Individual Project Card */
+.project-card {
+  background: #112240; /* Dark Premium Background */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 35px 30px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* badgess aur buttons niche aligned rahenge */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Card Hover Effects */
+.project-card:hover {
+  background: #1d3557;
+  border-color: #64ffda; /* Cyan Border Accent */
+  box-shadow: 0 12px 30px rgba(100, 255, 218, 0.1);
+}
+
+/* Project Heading */
+.project-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #64ffda; /* Cyan Accent */
+  margin: 0 0 15px 0;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover h3 {
+  color: #fff;
+}
+
+/* Project Description Paragraph */
+.project-card p {
+  color: #ccd6f6; /* Slate gray text */
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 25px 0;
+}
+
+/* Tech Stack Flex Wrapper */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+/* Individual Tech Badge with Icon alignment */
+.tech-badge {
+  background: rgba(100, 255, 218, 0.06);
+  color: #64ffda;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* Icon aur text ke bich space */
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-badge {
+  background: rgba(100, 255, 218, 0.15);
+  color: #fff;
+}
+
+/* Buttons Container */
+.project-links {
+  display: flex;
+  gap: 15px;
+}
+
+/* Modern Pill Style Action Buttons */
+.project-btn {
+  background: transparent;
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-btn:hover {
+  background: rgba(100, 255, 218, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Live Demo Highlight Button Variation */
+.project-btn.live {
+  background: #64ffda;
+  color: #0a192f;
+}
+
+.project-btn.live:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #0a192f;
+}
+
+/* ==========================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================== */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* Mobile and Tablets me 1 line me 1 card ho jayega */
+    gap: 20px;
+  }
+  
+  .project-card {
+    padding: 25px;
+  }
+}

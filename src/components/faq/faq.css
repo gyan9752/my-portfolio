@@ -1,0 +1,170 @@
+/* .faq {
+  padding: 100px 8%;
+}
+
+.faq h2 {
+  font-size: 42px;
+  color: #38bdf8;
+  margin-bottom: 50px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.faq-card {
+  padding: 30px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  border-radius: 20px;
+
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.faq-card h3 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+.faq-card p {
+  color: #cbd5e1;
+  line-height: 1.8;
+} */
+
+/* ==========================================
+   FAQ SECTION STYLE
+   ========================================== */
+
+/* FAQ Container */
+.faq {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 850px; /* FAQ को बीच में क्लीन दिखाने के लिए विड्थ फिक्स की */
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Individual FAQ Card */
+.faq-card {
+  background: #112240; /* Dark premium background */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Header Area (Question + Icon) */
+.faq-header {
+  padding: 24px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 20px;
+  user-select: none; /* डबल क्लिक करने पर टेक्स्ट सेलेक्ट नहीं होगा */
+}
+
+/* Question Styling */
+.faq-header h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ccd6f6;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Right Side Plus/Minus Icon */
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #64ffda; /* Cyan theme color */
+  transition: transform 0.3s ease;
+}
+
+/* Hover States */
+.faq-header:hover h3 {
+  color: #64ffda;
+}
+
+/* Active State (जब कार्ड खुला हो) */
+.faq-card.active {
+  border-color: #64ffda;
+  background: #1d3557; /* थिन प्रीमियम ब्लू शेड */
+}
+
+.faq-card.active .faq-header h3 {
+  color: #fff;
+}
+
+/* Answer Area Container */
+.faq-answer {
+  padding: 0 30px 24px 30px; /* टॉप पैडिंग 0 है ताकि हेडर के करीब रहे */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.faq-answer p {
+  color: #8892b0; /* readable slate text */
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Smooth entry animation for the answer */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Scaling for Mobile Screens */
+@media (max-width: 600px) {
+  .faq {
+    padding: 60px 15px;
+  }
+
+  .faq h2 {
+    font-size: 2rem;
+    margin-bottom: 35px;
+  }
+
+  .faq-header {
+    padding: 20px;
+  }
+
+  .faq-header h3 {
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    padding: 0 20px 20px 20px;
+  }
+}

@@ -1,0 +1,47 @@
+/* ==========================================
+   THEME TOGGLE BUTTON STYLE
+   ========================================== */
+
+.theme-toggle {
+  position: fixed;
+  right: 30px;
+  bottom: 100px; /* Scroll top button se perfectly upar stacked */
+  width: 55px;
+  height: 55px;
+
+  /* Nayi Cyan-Dark Theme color syncing */
+  background: #112240; /* Card base dark background */
+  border: 2px solid #64ffda; /* Cyan Border Accent */
+  color: #64ffda; /* Moon Icon turns Cyan */
+
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(100, 255, 218, 0.15);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Premium Hover Inversion Transitions */
+.theme-toggle:hover {
+  background: #64ffda; /* Hover par card full cyan ban jayega */
+  color: #0a192f; /* Icon deep dark ho jayega */
+  transform: translateY(-4px); /* Clean floating bounce effect */
+  box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
+}
+
+/* ==========================================
+   MOBILE BREAKPOINT
+   ========================================== */
+@media (max-width: 600px) {
+  .theme-toggle {
+    right: 20px;
+    bottom: 85px; /* Mobile layout stacking adjustment */
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+}

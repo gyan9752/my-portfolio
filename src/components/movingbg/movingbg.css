@@ -1,0 +1,29 @@
+.moving-canvas-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Pure layout ke sabse piche rahega */
+  pointer-events: none !important; /* CRITICAL FIX: Isse clicks canvas ke aar-paar buttons par lagenge */
+  transition: background 0.5s ease-in-out;
+}
+
+/* ==========================================
+   MULTI-THEME BACKGROUND COLOR CODES
+   ========================================== */
+
+/* 1. Default Cyan Night Theme Base */
+body.theme-cyan .moving-canvas-bg {
+  background: #0a192f !important;
+}
+
+/* 2. Space Deep Purple Theme Base */
+body.theme-purple .moving-canvas-bg {
+  background: #0c0a1c !important; /* Premium Sci-Fi space dark tone */
+}
+
+/* 3. Ghost Obsidian Pitch Black Theme Base */
+body.theme-black .moving-canvas-bg {
+  background: #000000 !important; /* Pure AMOLED black template */
+}
