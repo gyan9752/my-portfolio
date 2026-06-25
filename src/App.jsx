@@ -1,6 +1,7 @@
-// import Navbar from "./components/Navbar/Navbar";
-// import Hero from "./components/Hero/Hero";
-// import About from "./components/About/About";
+
+// import Navbar from "./components/navbar/navbar.jsx";
+// import Hero from "./components/Hero/hero.jsx";
+// import About from "./components/about/about.jsx";
 // import Skills from "./components/skills/skill.jsx";
 // import Project from "./components/project/project.jsx";
 // import Timeline from "./components/timeline/timeline.jsx";
@@ -9,18 +10,18 @@
 // import Theme from "./components/themeToggle/theme.jsx";
 // import ScrollTop from "./components/scrollTop/scrollTop.jsx";
 // import Certificate from "./components/certifications/certificate.jsx";  
-// // import Gallery from "./components/gallary/gallary.jsx";
 // import Stats from "./components/stats/stats.jsx";
 // import Service from "./components/service/service.jsx";
 // import Profile from "./components/profile/profile.jsx";
 // import Testimonial from "./components/testimonial/testimonial.jsx";
 // import Faq from "./components/faq/faq.jsx";
 // import Terminal from "./components/terminal/terminal.jsx"; 
-// import MovingBg from "./components/movingbg/movingbg.jsx";
+// import MovingBg from "./components/movingbg/movingbg"; 
+
 // function App() {
 //   return (
 //     <>
-//       {/* 2. Interactive Wave Background Layer (Sabse piche chalega) */}
+//       {/* Interactive Wave Background Layer */}
 //       <MovingBg />
 
 //       {/* Navigation & Core Hero */}
@@ -30,7 +31,7 @@
 //       <Theme />
 //       <ScrollTop />
 
-//       {/* --- SECTION 1: TECHNICAL & PROFESSIONAL FIELD (Top Priority) --- */}
+//       {/* --- SECTION 1: TECHNICAL & PROFESSIONAL FIELD --- */}
 //       <About />
 //       <Skills />
 //       <Project />
@@ -40,9 +41,8 @@
 //       <Timeline />     
 //       <Testimonial />  
       
-//       {/* --- SECTION 2: PERSONAL & ADDITIONAL FIELD (Bottom Layer) --- */}
+//       {/* --- SECTION 2: PERSONAL & ADDITIONAL FIELD --- */}
 //       <Certificate />   
-//       {/* <Gallery />   */}
 //       <Faq />          
 //       <Contact />
 //       <Footer />
@@ -52,9 +52,8 @@
 
 // export default App;
 
-
 import Navbar from "./components/navbar/navbar.jsx";
-import Hero from "./components/Hero/hero.jsx";
+import Hero from "./components/Hero/hero.jsx"; // Hero capital, hero.jsx small
 import About from "./components/about/about.jsx";
 import Skills from "./components/skills/skill.jsx";
 import Project from "./components/project/project.jsx";
@@ -70,7 +69,7 @@ import Profile from "./components/profile/profile.jsx";
 import Testimonial from "./components/testimonial/testimonial.jsx";
 import Faq from "./components/faq/faq.jsx";
 import Terminal from "./components/terminal/terminal.jsx"; 
-import MovingBg from "./components/movingbg/movingbg"; 
+import MovingBg from "./components/movingbg/movingbg.jsx"; 
 
 function App() {
   return (
