@@ -53,9 +53,9 @@
 // export default App;
 
 
-import Navbar from "./components/navbar/navbar";
-import Hero from "./components/hero/hero";
-import About from "./components/about/about";
+import Navbar from "./components/navbar/navbar.jsx";
+import Hero from "./components/Hero/hero.jsx";
+import About from "./components/about/about.jsx";
 import Skills from "./components/skills/skill.jsx";
 import Project from "./components/project/project.jsx";
 import Timeline from "./components/timeline/timeline.jsx";
