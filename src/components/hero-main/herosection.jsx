@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./hero.css"; 
 import { Typewriter } from "react-simple-typewriter";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import profile from "../../assets/image/photo.jpeg";
+import profile from "../../assets/image/PHOTO.jpeg";
 import myResume from "../../assets/resume/gyanresume.pdf"; 
 
 export default function Hero() {
