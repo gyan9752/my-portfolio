@@ -67,8 +67,7 @@ import Profile from "./components/profile/profile.jsx";
 import Testimonial from "./components/testimonial/testimonial.jsx";
 import Faq from "./components/faq/faq.jsx";
 import Terminal from "./components/terminal/terminal.jsx"; 
-import MovingBg from "./components/MovingBg/MovingBg"; // 1. Moving Background Import kiya
-
+import MovingBg from "./components/movingbg/movingbg.jsx";
 function App() {
   return (
     <>
