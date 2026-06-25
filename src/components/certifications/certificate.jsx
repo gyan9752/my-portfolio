@@ -1,18 +1,17 @@
 import "./certificate.css";
 import { motion } from "framer-motion";
 
-// 1. Yahan apni 8 alag-alag family photos ke sahi filename aur path change kar lijiye
-import member1 from "../../assets/image/father.jpeg";       // Father ki photo
-import member2 from "../../assets/image/mother.jpeg";       // Mother ki photo
-import member3 from "../../assets/image/brother1.jpeg";     // Brother 1 ki photo
-import member4 from "../../assets/image/brother2.jpeg";     // Brother 2 ki photo
-import member5 from "../../assets/image/didi.jpeg";       // Sister ki photo
-import member6 from "../../assets/image/bhabhi.jpeg";   // Sister-in-Law ki photo
-import member7 from "../../assets/image/nephew.jpeg";       // Nephew ki photo
-import member8 from "../../assets/image/photo.jpeg";        // Aapki khud ki photo (Me)
+// Images exact paths ke sath loaded hain
+import member1 from "../../assets/image/father.jpeg";       
+import member2 from "../../assets/image/mother.jpeg";       
+import member3 from "../../assets/image/brother1.jpeg";     
+import member4 from "../../assets/image/brother2.jpeg";     
+import member5 from "../../assets/image/didi.jpeg";       
+import member6 from "../../assets/image/bhabhi.jpeg";   
+import member7 from "../../assets/image/nephew.jpeg";       
+import member8 from "../../assets/image/PHOTO.jpeg"; // capital PHOTO matching your terminal files
 
-export default function Family() {
-  // 2. Array me har relation ke sath uske sahi image variable ko map kar diya hai
+export default function Certificate() {
   const familyMembers = [
     { image: member1, relation: "Father" },
     { image: member2, relation: "Mother" },
