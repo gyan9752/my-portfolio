@@ -16,7 +16,7 @@
 //   );
 // }
 
-import "./Navbar.css";
+import "./navbar.css";
 import { FaCode } from "react-icons/fa"; // Coding logo import kiya
 
 export default function Navbar() {
