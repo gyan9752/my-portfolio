@@ -64,7 +64,6 @@ function App() {
       {/* --- SECTION 1: TECHNICAL & PROFESSIONAL FIELD --- */}
       <About />
       <Skills />
-      <TechOrb />
       <Project />
       <Service />      
       <Stats />       
@@ -76,7 +75,9 @@ function App() {
       <Certificate />   
       <Faq />          
       <Contact />
+            <TechOrb />
       <Footer />
+
     </div>
   );
 }
