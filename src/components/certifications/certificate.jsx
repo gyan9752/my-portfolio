@@ -26,8 +26,6 @@ export default function Certificate() {
   return (
     <section className="certificate" id="family">
       <h2>My Pillars (Inspiration)</h2>
-      <p className="certificate-subtitle">root.getInspiration().map(member =&gt; member.log());</p>
-
       <div className="certificate-grid">
         {familyMembers.map((item, index) => (
           <motion.div 

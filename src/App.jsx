@@ -19,6 +19,7 @@ import Terminal from "./components/terminal/terminal.jsx";
 import MovingBg from "./components/movingbg/movingbg.jsx"; 
 //import CustomCursor from "./components/CustomCursor/CustomCursor.jsx";
 import WelcomeModal from "./components/WelcomeModal/WelcomeModal.jsx";
+import EasterEgg from "./components/EasterEgg/EasterEgg.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       {/* Navigation & Core Hero */}
       {/* <CustomCursor /> */}
       <WelcomeModal /> 
+      <EasterEgg />
       <Navbar />
       <Hero />
       <Terminal /> 

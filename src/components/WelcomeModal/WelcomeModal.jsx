@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./WelcomeModal.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function WelcomeModal() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    // Check karega ki kya user pehle aa chuka hai
-    const hasVisited = localStorage.getItem("portfolio_visited");
-    if (!hasVisited) {
-      setIsOpen(true);
-    }
-  }, []);
+  const [isOpen, setIsOpen] = useState(() => !localStorage.getItem("portfolio_visited"));
 
   const handleClose = () => {
-    localStorage.setItem("portfolio_visited", "true"); // LocalStorage me entry lock
+    localStorage.setItem("portfolio_visited", "true");
     setIsOpen(false);
   };
 
@@ -41,9 +33,13 @@ export default function WelcomeModal() {
               <p>
                 Hello! I'm <span className="highlight">Gyanvendra Mishra</span>, a Full Stack Developer specializing in building high-performance MERN APIs and scalable architecture.
               </p>
-              <p className="sub-text">
-                Explore my technical projects, core coding statistics, and developer services.
-              </p>
+              
+              {/* 💡 Symmetrical Safe React JSX Terminal Box */}
+              <div className="terminal-hint-box">
+                <code>
+                  <span className="terminal-arrow">➜</span> [HINT]: Type <span className="hint-code">gyan</span> anywhere on the keyboard to trigger terminal matrix mode override.
+                </code>
+              </div>
               
               <button className="welcome-btn" onClick={handleClose}>
                 Initialize Portfolio
