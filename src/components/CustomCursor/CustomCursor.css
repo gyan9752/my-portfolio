@@ -7,14 +7,18 @@ a, button, input, textarea, [role="button"] {
 }
 
 /* Custom Rocket Style */
+/* ==========================================
+   ROCKET CURSOR STYLING (UPDATE)
+   ========================================== */
 .rocket-cursor {
   position: fixed;
   font-size: 24px;
-  pointer-events: none; /* Takki niche ke clicks block na hon */
-  z-index: 99999;
+  pointer-events: none; 
+  /* 📝 Rocket ki z-index popup se kam honi chahiye */
+  z-index: 99990; /* Ise kam karke 99990 kar do */
   transform: translate(-30%, -30%) rotate(0deg);
   transition: transform 0.15s ease-out, filter 0.2s ease;
-  filter: drop-shadow(0 0 4px rgba(74, 222, 128, 0.3)); /* Light green glow */
+  filter: drop-shadow(0 0 4px rgba(74, 222, 128, 0.3)); 
 }
 
 /* Jab mouse link ya button par jaye (Boost Mode) */

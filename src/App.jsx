@@ -17,7 +17,8 @@ import Testimonial from "./components/testimonial/testimonial.jsx";
 import Faq from "./components/faq/faq.jsx";
 import Terminal from "./components/terminal/terminal.jsx"; 
 import MovingBg from "./components/movingbg/movingbg.jsx"; 
-import CustomCursor from "./components/CustomCursor/CustomCursor.jsx";
+//import CustomCursor from "./components/CustomCursor/CustomCursor.jsx";
+import WelcomeModal from "./components/WelcomeModal/WelcomeModal.jsx";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
       <MovingBg />
 
       {/* Navigation & Core Hero */}
-      <CustomCursor />
+      {/* <CustomCursor /> */}
+      <WelcomeModal /> 
       <Navbar />
       <Hero />
       <Terminal /> 
