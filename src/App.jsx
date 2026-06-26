@@ -1,4 +1,4 @@
-
+import { useState, useEffect } from "react"; 
 import Navbar from "./components/navbar/navbar.jsx";
 import Hero from "./components/hero-main/herosection.jsx";
 import About from "./components/about/about.jsx";
@@ -21,10 +21,32 @@ import MovingBg from "./components/movingbg/movingbg.jsx";
 import WelcomeModal from "./components/WelcomeModal/WelcomeModal.jsx";
 import EasterEgg from "./components/EasterEgg/EasterEgg.jsx";
 import AccessGate from "./components/AccessGate/AccessGate.jsx";
+import TechOrb from "./components/TechOrb/TechOrb.jsx";
 
 function App() {
+  const [hackerMode, setHackerMode] = useState(false);
+
+  useEffect(() => {
+    // Body tag par class dynamic control trigger
+    if (hackerMode) {
+      document.body.classList.add("hacker-matrix-mode");
+    } else {
+      document.body.classList.remove("hacker-matrix-mode");
+    }
+  }, [hackerMode]);
+
   return (
-    <>
+    <div className={`portfolio-app-root ${hackerMode ? "matrix-cyber-active" : ""}`}>
+      
+      {/* 🕶️ Master Hacker Switch Button Fixed */}
+      <button 
+        className={`hacker-toggle-floating-btn ${hackerMode ? "active-neon" : ""}`}
+        onClick={() => setHackerMode(!hackerMode)}
+        title="Toggle Recruiter/Hacker Mode"
+      >
+        {hackerMode ? "🌐 NORMAL" : "Mode On"}
+      </button>
+
       {/* Interactive Wave Background Layer */}
       <MovingBg />
 
@@ -42,6 +64,7 @@ function App() {
       {/* --- SECTION 1: TECHNICAL & PROFESSIONAL FIELD --- */}
       <About />
       <Skills />
+      <TechOrb />
       <Project />
       <Service />      
       <Stats />       
@@ -54,7 +77,7 @@ function App() {
       <Faq />          
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
 

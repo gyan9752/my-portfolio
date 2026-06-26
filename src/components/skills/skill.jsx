@@ -1,45 +1,3 @@
-// import "./skill.css";
-// import { motion } from "framer-motion";
-// import {
-//   FaReact,
-//   FaNodeJs,
-//   FaGitAlt,
-//   FaHtml5,
-//   FaCss3Alt,
-// } from "react-icons/fa";
-// import { SiJavascript, SiMongodb } from "react-icons/si";
-
-// export default function Skills() {
-//   const skills = [
-//     { icon: <FaReact />, name: "React" },
-//     { icon: <FaNodeJs />, name: "Node.js" },
-//     { icon: <SiMongodb />, name: "MongoDB" },
-//     { icon: <SiJavascript />, name: "JavaScript" },
-//     { icon: <FaGitAlt />, name: "Git" },
-//     { icon: <FaHtml5 />, name: "HTML" },
-//     { icon: <FaCss3Alt />, name: "CSS" },
-//   ];
-
-//   return (
-//     <section className="skills">
-//       <h2>My Skills</h2>
-
-//       <div className="skills-grid">
-//         {skills.map((skill, index) => (
-//           <motion.div
-//             className="skill-card"
-//             key={index}
-//             whileHover={{ scale: 1.08 }}
-//           >
-//             <div className="skill-icon">{skill.icon}</div>
-//             <h3>{skill.name}</h3>
-//           </motion.div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
 import "./skill.css";
 import { motion } from "framer-motion";
 import {
@@ -61,6 +19,7 @@ import {
   SiMongoose
 } from "react-icons/si";
 import { TbApi } from "react-icons/tb";
+import TiltWrapper from "../TiltWrapper/TiltWrapper";
 
 export default function Skills() {
   const skillCategories = [
@@ -68,10 +27,10 @@ export default function Skills() {
       title: "Frontend Development",
       skills: [
         { icon: <FaReact />, name: "React" },
-        { icon: <SiNextdotjs />, name: "Next.js" }, // Added Next.js
-        { icon: <SiTailwindcss />, name: "Tailwind CSS" }, // Added Tailwind
+        { icon: <SiNextdotjs />, name: "Next.js" },
+        { icon: <SiTailwindcss />, name: "Tailwind CSS" },
         { icon: <SiJavascript />, name: "JavaScript" },
-        { icon: <SiTypescript />, name: "TypeScript" }, // Added TypeScript (highly demanded)
+        { icon: <SiTypescript />, name: "TypeScript" },
         { icon: <FaHtml5 />, name: "HTML" },
         { icon: <FaCss3Alt />, name: "CSS" },
       ],
@@ -82,9 +41,9 @@ export default function Skills() {
         { icon: <FaNodeJs />, name: "Node.js" },
         { icon: <SiExpress />, name: "Express.js" },
         { icon: <SiMongodb />, name: "MongoDB" },
-        { icon: <SiMongoose />, name: "Mongoose" }, // Added Mongoose ODM
+        { icon: <SiMongoose />, name: "Mongoose" },
         { icon: <TbApi />, name: "REST APIs" },
-        { icon: <SiJsonwebtokens />, name: "JWT Auth" }, // Added Authentication focus
+        { icon: <SiJsonwebtokens />, name: "JWT Auth" },
       ],
     },
     {
@@ -107,14 +66,15 @@ export default function Skills() {
             
             <div className="skills-grid">
               {category.skills.map((skill, index) => (
-                <motion.div
-                  className="skill-card"
-                  key={index}
-                  whileHover={{ scale: 1.08 }}
-                >
-                  <div className="skill-icon">{skill.icon}</div>
-                  <h3>{skill.name}</h3>
-                </motion.div>
+                <TiltWrapper key={index} weight={15}>
+                  <motion.div
+                    className="skill-card"
+                    whileHover={{ scale: 1.02 }} /* Tilt wrapper provides independent scale control */
+                  >
+                    <div className="skill-icon">{skill.icon}</div>
+                    <h3>{skill.name}</h3>
+                  </motion.div>
+                </TiltWrapper>
               ))}
             </div>
           </div>

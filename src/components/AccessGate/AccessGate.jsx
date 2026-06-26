@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./AccessGate.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AccessGate() {
+  // ✅ Fixed: Initialize state directly from sessionStorage without triggering cascading render effect
   const [stage, setStage] = useState(() => {
     return sessionStorage.getItem("portfolio_session_unlocked") ? null : "gate";
-  }); // stages: gate -> granted -> welcome -> null
+  });
+  
   const [input, setInput] = useState("");
   const canvasRef = useRef(null);
 
-  // 📱 Mobile Logic: Triple tap on the word 'gyan' in the hint
   const handleMobileTripleTap = (e) => {
     if (e.detail === 3) {
       setStage("granted");
     }
   };
 
-  // 🛠️ Matrix Rain Animation Effect
   useEffect(() => {
     if (stage === "granted") {
       const canvas = canvasRef.current;
@@ -44,7 +44,6 @@ export default function AccessGate() {
       };
 
       const interval = setInterval(draw, 33);
-      // 3 seconds baad Success screen se Welcome screen par jayega
       const timer = setTimeout(() => setStage("welcome"), 3000); 
       
       return () => {
@@ -72,7 +71,6 @@ export default function AccessGate() {
   return (
     <div className="access-overlay">
       <AnimatePresence>
-        {/* --- STAGE 1: THE GATE --- */}
         {stage === "gate" && (
           <motion.div 
             className="gate-card" 
@@ -102,7 +100,6 @@ export default function AccessGate() {
           </motion.div>
         )}
 
-        {/* --- STAGE 2: ACCESS GRANTED (MATRIX) --- */}
         {stage === "granted" && (
           <motion.div className="success-layer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <canvas ref={canvasRef} className="matrix-canvas" />
@@ -113,7 +110,6 @@ export default function AccessGate() {
           </motion.div>
         )}
 
-        {/* --- STAGE 3: WELCOME MODAL --- */}
         {stage === "welcome" && (
           <motion.div 
             className="welcome-card" 

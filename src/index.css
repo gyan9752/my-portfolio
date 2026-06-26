@@ -14,6 +14,7 @@ body {
   background-color: #0f172a;
   color: white;
   font-family: sans-serif;
+  transition: background-color 0.4s ease;
 }
 
 button {
@@ -27,4 +28,97 @@ button:hover {
 .light-mode {
   background: white;
   color: black;
+}
+
+/* =========================================================
+   🕶️ MATRIX CYBER RECRUITER THEME OVERRIDES (FIXED) 🕶️
+   ========================================================= */
+
+/* 1. Global Document Root Overrides */
+body.hacker-matrix-mode {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #00ff41 !important;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
+}
+
+/* 2. Heading Neon Glow Engine */
+body.hacker-matrix-mode h1,
+body.hacker-matrix-mode h2,
+body.hacker-matrix-mode h3,
+body.hacker-matrix-mode .logo span {
+  color: #00ff41 !important;
+  text-shadow: 0 0 12px rgba(0, 255, 65, 0.85) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* 3. Cross-Module Cards Structure Mapping (Skills, Journey, Projects, Services, Contact) */
+body.hacker-matrix-mode .skill-card,
+body.hacker-matrix-mode .timeline-card,
+body.hacker-matrix-mode .project-card,
+body.hacker-matrix-mode .service-card,
+body.hacker-matrix-mode .contact-card,
+body.hacker-matrix-mode .stat-box,
+body.hacker-matrix-mode .faq-item,
+body.hacker-matrix-mode .testimonial-card,
+body.hacker-matrix-mode div[class*="-card"],
+body.hacker-matrix-mode div[class*="card"] {
+  background: #050505 !important;
+  border: 1px solid #00ff41 !important;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.25) !important;
+}
+
+/* 4. Text & Utility Variable Alignment Overrides */
+body.hacker-matrix-mode p,
+body.hacker-matrix-mode span,
+body.hacker-matrix-mode li,
+body.hacker-matrix-mode .year,
+body.hacker-matrix-mode .content p,
+body.hacker-matrix-mode svg {
+  color: #00ff41 !important;
+  fill: #00ff41 !important;
+}
+
+/* 5. Hide moving background animations when hacker mode is operational */
+body.hacker-matrix-mode .moving-canvas-bg {
+  background: #000000 !important;
+  opacity: 0.15;
+}
+
+/* =========================================================
+   🕹️ FLOATING SWITCH CONTROLLER LAYOUT DESIGN
+   ========================================================= */
+.hacker-toggle-floating-btn {
+  position: fixed;
+  bottom: 160px; 
+  right: 20px;
+  z-index: 999999;
+  background: #112240;
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  color: #64ffda;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hacker-toggle-floating-btn:hover {
+  transform: translateY(-4px);
+  border-color: #64ffda;
+  box-shadow: 0 0 18px rgba(100, 255, 218, 0.45);
+}
+
+/* Cyber Terminal Activated Active Switch configuration */
+.hacker-toggle-floating-btn.active-neon {
+  background: #000000;
+  border-color: #00ff41;
+  color: #00ff41;
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
 }

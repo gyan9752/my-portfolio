@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./EasterEgg.css";
 
 export default function EasterEgg() {
   const [active, setActive] = useState(false);
-  const targetCode = "gyan"; // 🔑 Ye hai aapka secret cheat code
-  let inputBuffer = "";
+  const targetCode = "gyan";
+  const bufferRef = useRef(""); 
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Sirf alphabet keys ko buffer me add karega
       if (e.key.length === 1 && e.key.match(/[a-z]/i)) {
-        inputBuffer += e.key.toLowerCase();
-        // Buffer ko target code ki length tak limit rakhega
-        if (inputBuffer.length > targetCode.length) {
-          inputBuffer = inputBuffer.substring(inputBuffer.length - targetCode.length);
+        bufferRef.current += e.key.toLowerCase();
+        
+        if (bufferRef.current.length > targetCode.length) {
+          bufferRef.current = bufferRef.current.substring(bufferRef.current.length - targetCode.length);
         }
         
-        // Code match hone par easter egg trigger!
-        if (inputBuffer === targetCode) {
+        if (bufferRef.current === targetCode) {
           setActive(true);
-          // 5 seconds baad automatic normal mode me wapas
           setTimeout(() => setActive(false), 5000);
         }
       }

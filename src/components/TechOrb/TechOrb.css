@@ -1,0 +1,65 @@
+.orb-wrapper-section {
+  width: 100%;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.orb-container {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.orb-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 25px;
+  letter-spacing: 2px;
+}
+
+/* 🌌 Absolute boundaries container box */
+.orb-scene {
+  height: 400px; /* Ab kafi open viewport area milega move hone ke liye */
+  position: relative;
+  width: 100%;
+}
+
+/* Fixed absolute mapping configuration */
+.floating-skill-badge {
+  position: absolute;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 24px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  will-change: transform;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-skill-badge:hover {
+  border-color: var(--hover-glow) !important;
+  box-shadow: 0 0 25px var(--hover-glow);
+}
+
+.skill-orb-icon {
+  font-size: 20px;
+}
+
+.skill-orb-name {
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: 'JetBrains Mono', monospace;
+}
