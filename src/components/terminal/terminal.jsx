@@ -6,7 +6,7 @@ export default function Terminal() {
   const [isOpen, setIsOpen] = useState(false); // Toggle state
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([
-    { type: "system", text: "Welcome to Gyan.dev CLI [Version 1.0.0]" },
+    { type: "system", text: "Welcome to Genius CLI [Version 1.0.0]" },
     { type: "system", text: "Type 'help' to see available commands." }
   ]);
   

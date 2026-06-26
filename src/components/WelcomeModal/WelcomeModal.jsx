@@ -48,7 +48,7 @@ export default function WelcomeModal() {
             </div>
 
             <div className="welcome-content">
-              <h2>🚀 Welcome to Gyan.dev</h2>
+              <h2>🚀 Welcome to Genius CLI</h2>
               <p>
                 Hello! I'm <span className="highlight">Gyanvendra Mishra</span>, a Full Stack Developer specializing in building high-performance MERN APIs and scalable architecture.
               </p>

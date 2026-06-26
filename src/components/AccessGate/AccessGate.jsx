@@ -3,7 +3,9 @@ import "./AccessGate.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AccessGate() {
-  // ✅ Linter Fix: Seedha initialization ke waqt hi check karo, useEffect ki zaroorat nahi padegi
+  // 1. Saari States ko ek sath sabse upar define karo
+  const [inputName, setInputName] = useState("");
+  
   const [userName, setUserName] = useState(() => {
     return sessionStorage.getItem("portfolio_visitor_name") || "";
   });
@@ -14,6 +16,7 @@ export default function AccessGate() {
 
   const [showWelcome, setShowWelcome] = useState(false);
 
+  // 2. Form Submission Handler Logic
   const handleAccessSubmit = (e) => {
     e.preventDefault();
     if (!inputName.trim()) return;
@@ -21,11 +24,9 @@ export default function AccessGate() {
     const finalName = inputName.trim();
     sessionStorage.setItem("portfolio_visitor_name", finalName);
     setUserName(finalName);
-    setShowGate(false);
-    setShowWelcome(true);
+    setShowGate(false); // Ask name portal close karo
+    setShowWelcome(true); // Welcome personalized modal open karo
   };
-
-  const [inputName, setInputName] = useState("");
 
   return (
     <>
@@ -34,8 +35,8 @@ export default function AccessGate() {
         {showGate && (
           <motion.div 
             className="access-gate-overlay"
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.4 }}
           >
             <div className="gate-terminal-box">
               <div className="gate-scanner"></div>
