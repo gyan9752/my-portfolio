@@ -1,134 +1,97 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./AccessGate.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AccessGate() {
-  // ✅ Fixed: Initialize state directly from sessionStorage without triggering cascading render effect
-  const [stage, setStage] = useState(() => {
-    return sessionStorage.getItem("portfolio_session_unlocked") ? null : "gate";
+  // ✅ Linter Fix: Seedha initialization ke waqt hi check karo, useEffect ki zaroorat nahi padegi
+  const [userName, setUserName] = useState(() => {
+    return sessionStorage.getItem("portfolio_visitor_name") || "";
   });
   
-  const [input, setInput] = useState("");
-  const canvasRef = useRef(null);
+  const [showGate, setShowGate] = useState(() => {
+    return !sessionStorage.getItem("portfolio_visitor_name");
+  });
 
-  const handleMobileTripleTap = (e) => {
-    if (e.detail === 3) {
-      setStage("granted");
-    }
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  const handleAccessSubmit = (e) => {
+    e.preventDefault();
+    if (!inputName.trim()) return;
+
+    const finalName = inputName.trim();
+    sessionStorage.setItem("portfolio_visitor_name", finalName);
+    setUserName(finalName);
+    setShowGate(false);
+    setShowWelcome(true);
   };
 
-  useEffect(() => {
-    if (stage === "granted") {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const letters = "GYANVENDRAMISHRA0123456789";
-      const fontSize = 16;
-      const columns = canvas.width / fontSize;
-      const drops = Array.from({ length: columns }).fill(1);
-
-      const draw = () => {
-        ctx.fillStyle = "rgba(15, 23, 42, 0.1)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#4ade80";
-        ctx.font = `${fontSize}px monospace`;
-
-        for (let i = 0; i < drops.length; i++) {
-          const text = letters[Math.floor(Math.random() * letters.length)];
-          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
-        }
-      };
-
-      const interval = setInterval(draw, 33);
-      const timer = setTimeout(() => setStage("welcome"), 3000); 
-      
-      return () => {
-        clearInterval(interval);
-        clearTimeout(timer);
-      };
-    }
-  }, [stage]);
-
-  const handleInput = (e) => {
-    const val = e.target.value.toLowerCase();
-    setInput(val);
-    if (val === "gyan") {
-      setStage("granted");
-    }
-  };
-
-  const finalizeAccess = () => {
-    sessionStorage.setItem("portfolio_session_unlocked", "true");
-    setStage(null);
-  };
-
-  if (!stage) return null;
+  const [inputName, setInputName] = useState("");
 
   return (
-    <div className="access-overlay">
+    <>
+      {/* PHASE 1: INITIAL ENTRY GATE (ASK NAME) */}
       <AnimatePresence>
-        {stage === "gate" && (
+        {showGate && (
           <motion.div 
-            className="gate-card" 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            className="access-gate-overlay"
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="terminal-header">
-                <div className="dots"><span className="r"></span><span className="y"></span><span className="g"></span></div>
-                <span className="title">security_login.sh</span>
-            </div>
-            <div className="gate-content">
-              <h2>🔒 SYSTEM LOCKED</h2>
-              <p>Type the access key to initialize portfolio_session.</p>
-              <input 
-                autoFocus 
-                type="text" 
-                placeholder="Access Key..." 
-                value={input} 
-                onChange={handleInput}
-                className="access-input"
-              />
-              <div className="hint">
-                ➜ [HINT]: Type <span className="hint-code" onClick={handleMobileTripleTap}>gyan</span> anywhere (or Triple Tap it on mobile).
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {stage === "granted" && (
-          <motion.div className="success-layer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <canvas ref={canvasRef} className="matrix-canvas" />
-            <div className="success-banner">
-                <h1 className="glitch-text">ACCESS GRANTED</h1>
-                <p>Establishing secure connection...</p>
-            </div>
-          </motion.div>
-        )}
-
-        {stage === "welcome" && (
-          <motion.div 
-            className="welcome-card" 
-            initial={{ y: 50, opacity: 0 }} 
-            animate={{ y: 0, opacity: 1 }}
-          >
-             <div className="terminal-header">
-                <div className="dots"><span className="r"></span><span className="y"></span><span className="g"></span></div>
-                <span className="title">welcome_intro.js</span>
-            </div>
-            <div className="welcome-content">
-              <h2>🚀 Welcome to Gyan.dev</h2>
-              <p>Hello! I'm <span className="green">Gyanvendra Mishra</span>, a Full Stack Developer specialized in MERN APIs.</p>
-              <p className="sub-text">System is now operational and ready for exploration.</p>
-              <button className="init-btn" onClick={finalizeAccess}>Initialize Portfolio</button>
+            <div className="gate-terminal-box">
+              <div className="gate-scanner"></div>
+              <h3>// SECURE PORTAL ACCESS</h3>
+              <p className="gate-subtitle">Identify yourself to initialize full stack ecosystem mapping.</p>
+              
+              <form onSubmit={handleAccessSubmit} className="gate-form">
+                <input 
+                  type="text" 
+                  placeholder="Enter your name..." 
+                  value={inputName}
+                  onChange={(e) => setInputName(e.target.value)}
+                  maxLength={20}
+                  autoFocus
+                  className="gate-input"
+                />
+                <button type="submit" className="gate-submit-btn">
+                  INITIALIZE REQ_
+                </button>
+              </form>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+
+      {/* PHASE 2: PERSONALIZED WELCOME MODAL */}
+      <AnimatePresence>
+        {showWelcome && (
+          <motion.div 
+            className="welcome-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div 
+              className="welcome-card-box"
+              initial={{ scale: 0.8, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 20 }}
+              transition={{ type: "spring", damping: 15 }}
+            >
+              <div className="welcome-glow-bar"></div>
+              <h2>⚡ ACCESS GRANTED</h2>
+              <p className="welcome-greet">
+                Welcome, <span className="highlight-visitor">{userName}</span> to my portfolio!
+              </p>
+              <p className="welcome-desc">
+                The full-stack MERN ecosystem, dynamic 3D physics mapping, and server-side logs are now fully operational for your session.
+              </p>
+              <button className="welcome-close-btn" onClick={() => setShowWelcome(false)}>
+                EXPLORE ECOSYSTEM
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
