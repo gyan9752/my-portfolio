@@ -1,0 +1,35 @@
+.split {
+  display: inline-block;
+  overflow: visible;
+}
+
+.split__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.14em 0.08em 0.18em;
+  margin: -0.14em -0.08em -0.18em;
+}
+
+.split.is-in .split__word {
+  overflow: visible;
+}
+
+.split__part {
+  display: inline-block;
+  transform: translateY(115%) rotate(8deg);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s), opacity 0.5s ease var(--d, 0s);
+  will-change: transform;
+}
+
+.split.is-in .split__part {
+  transform: none;
+  opacity: 1;
+}
+
+.split__space {
+  display: inline-block;
+  width: 0.001em;
+  overflow: hidden;
+}
