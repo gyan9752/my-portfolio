@@ -59,8 +59,12 @@ export default function App() {
 
   // Lock page scroll while the loader or a project overlay or booking modal is on screen
   useEffect(() => {
+    if (isAdminPath) {
+      document.body.style.overflow = 'auto';
+      return;
+    }
     document.body.style.overflow = !ready || activeProject || isBookingOpen ? 'hidden' : '';
-  }, [ready, activeProject, isBookingOpen]);
+  }, [isAdminPath, ready, activeProject, isBookingOpen]);
 
   const handleReady = useCallback(() => setReady(true), []);
 

@@ -62,6 +62,14 @@ export default function AdminPortal() {
     setCurrentPage(1);
   }, [activeTab, searchQuery, pageSize]);
 
+  // Ensure document body is free to scroll in admin portal
+  useEffect(() => {
+    document.body.style.overflow = 'auto';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   // Reply Modal state
   const [replyModal, setReplyModal] = useState({
     open: false,
