@@ -1,6 +1,5 @@
-// Thin client for the Express backend (../../backend).
-// In dev, Vite proxies /api → http://localhost:5000. In production set VITE_API_URL.
-const BASE = import.meta.env.VITE_API_URL || '';
+const RAW_BASE = import.meta.env.VITE_API_URL || '';
+const BASE = RAW_BASE.replace(/\/+$/, '');
 
 export async function sendMessage(payload) {
   const res = await fetch(`${BASE}/api/contact`, {
