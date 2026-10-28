@@ -6,7 +6,7 @@ export const personal = {
   initials: 'GM',
   email: 'gyanvendram@gmail.com',
   phone: '+91 9026926216',
-  location: 'New Delhi, IN',
+  location: 'Noida, IN',
   photo: '/gyanvendra.jpg',
   roles: ['Full Stack Developer', 'React & Next.js', 'Node.js APIs', 'UI Animator'],
   socials: {
