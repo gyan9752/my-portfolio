@@ -24,7 +24,10 @@ export default function Footer({ go }) {
 
       <div className="footer__bar">
         <span>
-          © {new Date().getFullYear()} {personal.name} {personal.surname}
+          © {new Date().getFullYear()} {personal.name} {personal.surname} •{' '}
+          <a href="/gadmin" style={{ color: 'inherit', textDecoration: 'none', opacity: 0.6 }} title="Admin Portal">
+            Admin
+          </a>
         </span>
         <button className="footer__top" onClick={() => go('top')} aria-label="Back to top" data-cursor="Top">
           <ArrowUp size={20} />

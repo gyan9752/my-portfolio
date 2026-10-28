@@ -17,20 +17,40 @@ import AdminPortal from '../components/Admin/AdminPortal';
 import { getVisitor, syncPendingVisitor } from '../services/api';
 import './App.css';
 
+const checkIsAdmin = () => {
+  const p = window.location.pathname.toLowerCase();
+  const h = window.location.hash.toLowerCase();
+  const s = new URLSearchParams(window.location.search);
+  return (
+    p.startsWith('/gadmin') ||
+    p.startsWith('/admin') ||
+    h === '#gadmin' ||
+    h === '#admin' ||
+    s.has('gadmin') ||
+    s.has('admin')
+  );
+};
+
 export default function App() {
-  const [isAdminPath, setIsAdminPath] = useState(() => window.location.pathname.startsWith('/gadmin'));
+  const [isAdminPath, setIsAdminPath] = useState(checkIsAdmin);
   const [ready, setReady] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   // Intro gate: shown until a visitor has entered name + email (add ?intro to the URL to replay it)
-  const [entered, setEntered] = useState(() => !!getVisitor() && !new URLSearchParams(window.location.search).has('intro'));
+  const [entered, setEntered] = useState(
+    () => checkIsAdmin() || (!!getVisitor() && !new URLSearchParams(window.location.search).has('intro'))
+  );
 
   useEffect(() => {
     const handleLocationChange = () => {
-      setIsAdminPath(window.location.pathname.startsWith('/gadmin'));
+      setIsAdminPath(checkIsAdmin());
     };
     window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   useEffect(() => {
