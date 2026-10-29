@@ -1,11 +1,38 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Palette, Volume2, VolumeX } from 'lucide-react';
 import { navLinks, personal } from '../../data/portfolioData';
+import { sound } from '../../services/sound';
+import { THEMES, applyTheme, getSavedTheme, subscribeTheme } from '../../services/theme';
 import './Navbar.css';
 
 export default function Navbar({ ready, go, onOpenBooking }) {
   const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState('');
+  const [isSoundOn, setIsSoundOn] = useState(() => sound.isSoundEnabled());
+  const [activeTheme, setActiveTheme] = useState(() => getSavedTheme());
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  // Subscribe to external sound and theme updates
+  useEffect(() => {
+    const unsubSound = sound.subscribe((enabled) => setIsSoundOn(enabled));
+    const unsubTheme = subscribeTheme((theme) => setActiveTheme(theme));
+    return () => {
+      unsubSound();
+      unsubTheme();
+    };
+  }, []);
+
+  // Close palette dropdown when clicking outside
+  useEffect(() => {
+    if (!paletteOpen) return;
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest('.nav__theme-wrapper')) {
+        setPaletteOpen(false);
+      }
+    };
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [paletteOpen]);
 
   // Hide while scrolling down, show when scrolling up
   useEffect(() => {
@@ -32,26 +59,121 @@ export default function Navbar({ ready, go, onOpenBooking }) {
     return () => observer.disconnect();
   }, []);
 
+  const handleNavClick = (id) => {
+    sound.playClick();
+    go(id);
+  };
+
+  const handleBookingClick = () => {
+    sound.playClick();
+    onOpenBooking();
+  };
+
+  const handleSoundToggle = () => {
+    const nextState = sound.toggleSound();
+    setIsSoundOn(nextState);
+  };
+
+  const handleSelectTheme = (t) => {
+    applyTheme(t.id);
+    setActiveTheme(t);
+    sound.playThemeChange();
+    setPaletteOpen(false);
+  };
+
   return (
     <header className={`nav ${ready ? 'is-ready' : ''} ${hidden ? 'is-hidden' : ''}`}>
-      <button className="nav__logo" onClick={() => go('top')} aria-label="Back to top">
+      <button
+        className="nav__logo"
+        onClick={() => handleNavClick('top')}
+        onMouseEnter={() => sound.playHover()}
+        aria-label="Back to top"
+      >
         {personal.initials}
       </button>
 
       <nav className="nav__links">
         {navLinks.map(({ id, label }) => (
-          <button key={id} className={`nav__link ${active === id ? 'is-active' : ''}`} onClick={() => go(id)}>
+          <button
+            key={id}
+            className={`nav__link ${active === id ? 'is-active' : ''}`}
+            onClick={() => handleNavClick(id)}
+            onMouseEnter={() => sound.playHover()}
+          >
             {label}
           </button>
         ))}
       </nav>
 
       <div className="nav__actions">
-        <button className="nav__book" onClick={onOpenBooking} aria-label="Book Call">
+        {/* Sound FX & Theme Accent Controls */}
+        <div className="nav__tools">
+          <button
+            type="button"
+            className={`nav__tool-btn ${isSoundOn ? 'is-active' : ''}`}
+            onClick={handleSoundToggle}
+            onMouseEnter={() => sound.playHover()}
+            title={isSoundOn ? 'Sound FX: On (Click to mute)' : 'Sound FX: Off (Click to unmute)'}
+            aria-label="Toggle Sound Effects"
+          >
+            {isSoundOn ? <Volume2 size={15} /> : <VolumeX size={15} />}
+          </button>
+
+          <div className="nav__theme-wrapper">
+            <button
+              type="button"
+              className={`nav__tool-btn nav__theme-btn ${paletteOpen ? 'is-open' : ''}`}
+              onClick={() => {
+                sound.playClick();
+                setPaletteOpen((prev) => !prev);
+              }}
+              onMouseEnter={() => sound.playHover()}
+              title={`Accent: ${activeTheme.name} (Click to change)`}
+              aria-label="Change Accent Color"
+            >
+              <span className="nav__theme-dot" style={{ backgroundColor: activeTheme.hex }} />
+              <Palette size={14} />
+            </button>
+
+            {paletteOpen && (
+              <div className="nav__palette-dropdown">
+                <span className="nav__palette-title">Theme Accent</span>
+                <div className="nav__palette-dots">
+                  {THEMES.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      className={`nav__swatch ${activeTheme.id === t.id ? 'is-selected' : ''}`}
+                      style={{ '--swatch-color': t.hex }}
+                      onClick={() => handleSelectTheme(t)}
+                      onMouseEnter={() => sound.playHover()}
+                      title={t.name}
+                      aria-label={t.name}
+                    >
+                      <span className="nav__swatch-circle" />
+                      <span className="nav__swatch-label">{t.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button
+          className="nav__book"
+          onClick={handleBookingClick}
+          onMouseEnter={() => sound.playHover()}
+          aria-label="Book Call"
+        >
           <span>Book Call</span>
         </button>
 
-        <button className="nav__cta" onClick={() => go('contact')}>
+        <button
+          className="nav__cta"
+          onClick={() => handleNavClick('contact')}
+          onMouseEnter={() => sound.playHover()}
+        >
           <span>Hire me</span>
           <ArrowUpRight size={16} />
         </button>
@@ -59,3 +181,4 @@ export default function Navbar({ ready, go, onOpenBooking }) {
     </header>
   );
 }
+

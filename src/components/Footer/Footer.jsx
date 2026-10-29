@@ -1,9 +1,15 @@
 import { ArrowUp } from 'lucide-react';
 import { personal } from '../../data/portfolioData';
+import { sound } from '../../services/sound';
 import './Footer.css';
 
 export default function Footer({ go }) {
   const fullName = `${personal.name} ${personal.surname}`.toUpperCase();
+
+  const handleTopClick = () => {
+    sound.playClick();
+    go('top');
+  };
 
   return (
     <footer className="footer">
@@ -29,7 +35,13 @@ export default function Footer({ go }) {
             Admin
           </a>
         </span>
-        <button className="footer__top" onClick={() => go('top')} aria-label="Back to top" data-cursor="Top">
+        <button
+          className="footer__top"
+          onClick={handleTopClick}
+          onMouseEnter={() => sound.playHover()}
+          aria-label="Back to top"
+          data-cursor="Top"
+        >
           <ArrowUp size={20} />
         </button>
         <span>{personal.location}</span>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { X, Clock, Video, CheckCircle2, ChevronLeft, ChevronRight, Globe, ArrowRight, Calendar as CalendarIcon, Loader2 } from 'lucide-react';
 import { personal } from '../../data/portfolioData';
 import { sendBooking } from '../../services/api';
+import { sound } from '../../services/sound';
 import './BookingModal.css';
 
 export default function BookingModal({ isOpen, onClose }) {
@@ -22,6 +23,7 @@ export default function BookingModal({ isOpen, onClose }) {
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     if (!bookingDetails.name || !bookingDetails.email || isSubmitting) return;
+    sound.playClick();
     setIsSubmitting(true);
     try {
       await sendBooking({
@@ -36,10 +38,12 @@ export default function BookingModal({ isOpen, onClose }) {
     } finally {
       setIsSubmitting(false);
       setStep('success');
+      sound.playSuccess();
     }
   };
 
   const handleReset = () => {
+    sound.playClick();
     setStep('calendar');
     onClose();
   };
@@ -115,7 +119,13 @@ export default function BookingModal({ isOpen, onClose }) {
                     <button
                       key={day}
                       type="button"
-                      onClick={() => isAvailable && setSelectedDate(day)}
+                      onClick={() => {
+                        if (isAvailable) {
+                          sound.playClick();
+                          setSelectedDate(day);
+                        }
+                      }}
+                      onMouseEnter={() => isAvailable && sound.playHover()}
                       disabled={!isAvailable}
                       className={`bm-day-btn ${isSelected ? 'is-selected' : ''} ${isAvailable ? 'is-available' : 'is-disabled'}`}
                     >
@@ -135,7 +145,11 @@ export default function BookingModal({ isOpen, onClose }) {
                     <button
                       key={time}
                       type="button"
-                      onClick={() => setSelectedTime(time)}
+                      onClick={() => {
+                        sound.playClick();
+                        setSelectedTime(time);
+                      }}
+                      onMouseEnter={() => sound.playHover()}
                       className={`bm-slot-btn ${selectedTime === time ? 'is-selected' : ''}`}
                     >
                       {time}
@@ -146,7 +160,11 @@ export default function BookingModal({ isOpen, onClose }) {
 
               <button
                 type="button"
-                onClick={() => setStep('form')}
+                onClick={() => {
+                  sound.playClick();
+                  setStep('form');
+                }}
+                onMouseEnter={() => sound.playHover()}
                 className="bm-primary-btn"
               >
                 <span>Next: Enter Details (Oct {selectedDate} @ {selectedTime})</span>

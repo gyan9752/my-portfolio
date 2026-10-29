@@ -15,6 +15,7 @@ import BookingModal from '../components/BookingModal/BookingModal';
 import Intro from '../components/Intro/Intro';
 import AdminPortal from '../components/Admin/AdminPortal';
 import { getVisitor, syncPendingVisitor } from '../services/api';
+import '../services/theme';
 import './App.css';
 
 const checkIsAdmin = () => {

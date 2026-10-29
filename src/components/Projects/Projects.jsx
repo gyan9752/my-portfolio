@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '../../data/portfolioData';
+import { sound } from '../../services/sound';
 import useScrollVar from '../../hooks/useScrollVar';
 import ProjectVisual from '../ProjectVisual/ProjectVisual';
 import './Projects.css';
@@ -26,11 +27,20 @@ export default function Projects({ onOpen }) {
             <article
               className="project__card"
               style={{ '--a': project.theme.a, '--b': project.theme.b }}
-              onClick={() => onOpen(project)}
+              onClick={() => {
+                sound.playClick();
+                onOpen(project);
+              }}
+              onMouseEnter={() => sound.playHover()}
               data-cursor="Open"
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onOpen(project)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  sound.playClick();
+                  onOpen(project);
+                }
+              }}
             >
               <div className="project__info">
                 <span className="project__number">{project.number}</span>

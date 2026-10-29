@@ -300,11 +300,11 @@
 
 .hero .btn--solid {
   background: var(--accent);
-  color: #000;
+  color: var(--accent-contrast, #000);
 }
 
 .hero .btn--solid:hover {
-  box-shadow: 0 0 40px rgba(200, 255, 61, 0.45);
+  box-shadow: 0 0 40px rgba(var(--accent-rgb, 200, 255, 61), 0.45);
 }
 
 .hero .btn--solid svg {

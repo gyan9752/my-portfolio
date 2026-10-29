@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowUpRight, Github, Linkedin, Loader2, Mail, MessageCircle } from 'lucide-react';
 import { personal } from '../../data/portfolioData';
 import { sendMessage } from '../../services/api';
+import { sound } from '../../services/sound';
 import SplitText from '../SplitText/SplitText';
 import Magnetic from '../Magnetic/Magnetic';
 import './Contact.css';
@@ -29,11 +30,13 @@ export default function Contact() {
 
   const submit = async (e) => {
     e.preventDefault();
+    sound.playClick();
     setStatus('sending');
     setError('');
     try {
       await sendMessage(form);
       setStatus('sent');
+      sound.playSuccess();
       setForm({ name: '', email: '', message: '' });
     } catch (err) {
       setError(err.message === 'Failed to fetch' ? `Server unreachable — email me at ${personal.email}` : err.message);
@@ -75,7 +78,13 @@ export default function Contact() {
 
           <div className="form__foot">
             <Magnetic strength={0.25}>
-              <button className="form__send" type="submit" disabled={status === 'sending'} data-cursor="Send">
+              <button
+                className="form__send"
+                type="submit"
+                disabled={status === 'sending'}
+                data-cursor="Send"
+                onMouseEnter={() => sound.playHover()}
+              >
                 {status === 'sending' ? <Loader2 size={20} className="spin" /> : <ArrowUpRight size={22} />}
                 <span>{status === 'sending' ? 'Sending' : 'Send'}</span>
               </button>
@@ -92,20 +101,41 @@ export default function Contact() {
               <b>✓</b>
             </div>
             <p>Sent!</p>
-            <button type="button" onClick={() => setStatus('idle')}>
+            <button
+              type="button"
+              onClick={() => {
+                sound.playClick();
+                setStatus('idle');
+              }}
+              onMouseEnter={() => sound.playHover()}
+            >
               Send another
             </button>
           </div>
         </form>
 
         <div className="contact__side">
-          <a className="contact__mail" href={`mailto:${personal.email}`} data-cursor="Mail">
+          <a
+            className="contact__mail"
+            href={`mailto:${personal.email}`}
+            data-cursor="Mail"
+            onClick={() => sound.playClick()}
+            onMouseEnter={() => sound.playHover()}
+          >
             {personal.email}
           </a>
           <div className="contact__icons">
             {links.map(({ icon: Icon, href, label }) => (
               <Magnetic key={label} strength={0.5}>
-                <a className="contact__icon" href={href} target="_blank" rel="noreferrer" aria-label={label}>
+                <a
+                  className="contact__icon"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  onClick={() => sound.playClick()}
+                  onMouseEnter={() => sound.playHover()}
+                >
                   <Icon size={22} />
                 </a>
               </Magnetic>

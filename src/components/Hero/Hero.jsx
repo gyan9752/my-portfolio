@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { ArrowDown, ArrowUpRight, Calendar } from 'lucide-react';
 import { personal } from '../../data/portfolioData';
+import { sound } from '../../services/sound';
 import ParticleField from '../ParticleField/ParticleField';
 import SplitText from '../SplitText/SplitText';
 import Magnetic from '../Magnetic/Magnetic';
@@ -50,17 +51,39 @@ export default function Hero({ ready, go, onOpenBooking }) {
 
           <div className="hero__actions">
             <Magnetic>
-              <button className="btn btn--solid" onClick={() => go('work')} data-cursor="Go">
+              <button
+                className="btn btn--solid"
+                onClick={() => {
+                  sound.playClick();
+                  go('work');
+                }}
+                onMouseEnter={() => sound.playHover()}
+                data-cursor="Go"
+              >
                 See my work <ArrowDown size={18} />
               </button>
             </Magnetic>
             <Magnetic>
-              <button className="btn btn--cal" onClick={onOpenBooking}>
+              <button
+                className="btn btn--cal"
+                onClick={() => {
+                  sound.playClick();
+                  onOpenBooking();
+                }}
+                onMouseEnter={() => sound.playHover()}
+              >
                 <Calendar size={17} /> Book a call
               </button>
             </Magnetic>
             <Magnetic>
-              <button className="btn btn--ghost" onClick={() => go('contact')}>
+              <button
+                className="btn btn--ghost"
+                onClick={() => {
+                  sound.playClick();
+                  go('contact');
+                }}
+                onMouseEnter={() => sound.playHover()}
+              >
                 Say hi <ArrowUpRight size={18} />
               </button>
             </Magnetic>
@@ -68,7 +91,15 @@ export default function Hero({ ready, go, onOpenBooking }) {
         </div>
       </div>
 
-      <button className="hero__scroll" onClick={() => go('work')} aria-label="Scroll down">
+      <button
+        className="hero__scroll"
+        onClick={() => {
+          sound.playClick();
+          go('work');
+        }}
+        onMouseEnter={() => sound.playHover()}
+        aria-label="Scroll down"
+      >
         <span />
       </button>
     </section>

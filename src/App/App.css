@@ -1,5 +1,10 @@
-/* App shell: design tokens are scoped to .app (no global stylesheet).
-   html/body only get the minimum reset needed so the page has no white edges. */
+:root {
+  --theme-accent: #c8ff3d;
+  --theme-accent-rgb: 200, 255, 61;
+  --theme-accent-glow: rgba(200, 255, 61, 0.35);
+  --theme-accent-contrast: #000000;
+}
+
 html {
   background: #07070b;
   scroll-behavior: smooth;
@@ -17,7 +22,10 @@ body {
   --fg: #f4f4ef;
   --muted: #8b8b9c;
   --line: rgba(255, 255, 255, 0.1);
-  --accent: #c8ff3d;
+  --accent: var(--theme-accent, #c8ff3d);
+  --accent-rgb: var(--theme-accent-rgb, 200, 255, 61);
+  --accent-glow: var(--theme-accent-glow, rgba(200, 255, 61, 0.35));
+  --accent-contrast: var(--theme-accent-contrast, #000000);
   --violet: #7c5cff;
   --pink: #ff5d8f;
   --cyan: #4fb7ff;
@@ -52,7 +60,7 @@ body {
 
 .app ::selection {
   background: var(--accent);
-  color: #000;
+  color: var(--accent-contrast, #000);
 }
 
 @media (pointer: fine) {

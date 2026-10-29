@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Github, X } from 'lucide-react';
 import ProjectVisual from '../ProjectVisual/ProjectVisual';
+import { sound } from '../../services/sound';
 import './ProjectOverlay.css';
 
 export default function ProjectOverlay({ project, onClose }) {
@@ -13,10 +14,20 @@ export default function ProjectOverlay({ project, onClose }) {
   useEffect(() => {
     if (!project) return undefined;
     scroller.current?.scrollTo(0, 0);
-    const onKey = (e) => e.key === 'Escape' && onClose();
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        sound.playClick();
+        onClose();
+      }
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [project, onClose]);
+
+  const handleClose = () => {
+    sound.playClick();
+    onClose();
+  };
 
   return (
     <div
@@ -27,7 +38,13 @@ export default function ProjectOverlay({ project, onClose }) {
     >
       {data && (
         <div className="overlay__inner">
-          <button className="overlay__close" onClick={onClose} aria-label="Close project" data-cursor="Close">
+          <button
+            className="overlay__close"
+            onClick={handleClose}
+            onMouseEnter={() => sound.playHover()}
+            aria-label="Close project"
+            data-cursor="Close"
+          >
             <X size={26} />
           </button>
 
