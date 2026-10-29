@@ -89,7 +89,7 @@ export default function Navbar({ ready, go, onOpenBooking }) {
         onMouseEnter={() => sound.playHover()}
         aria-label="Back to top"
       >
-        {personal.initials}
+        <span>{personal.initials}</span>
       </button>
 
       <nav className="nav__links">
