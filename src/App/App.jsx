@@ -14,6 +14,7 @@ import ProjectOverlay from '../components/ProjectOverlay/ProjectOverlay';
 import BookingModal from '../components/BookingModal/BookingModal';
 import Intro from '../components/Intro/Intro';
 import AdminPortal from '../components/Admin/AdminPortal';
+import FloatingMascot from '../components/Avatars/FloatingMascot';
 import { getVisitor, syncPendingVisitor } from '../services/api';
 import '../services/theme';
 import './App.css';
@@ -96,6 +97,7 @@ export default function App() {
       </main>
 
       <Footer go={go} />
+      {ready && <FloatingMascot />}
       <ProjectOverlay project={activeProject} onClose={() => setActiveProject(null)} />
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </div>

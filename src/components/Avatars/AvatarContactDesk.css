@@ -1,0 +1,99 @@
+/* frontend/src/components/Avatars/AvatarContactDesk.css */
+.contact-avatar {
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.contact-avatar__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
+}
+
+.contact-avatar__bubble {
+  background: rgba(18, 18, 28, 0.92);
+  border: 1px solid var(--accent);
+  color: var(--fg);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(var(--accent-rgb, 200, 255, 61), 0.2);
+  margin-bottom: -15px;
+  z-index: 5;
+  white-space: nowrap;
+  animation: contact-bubble-bob 3s ease-in-out infinite alternate;
+}
+
+@keyframes contact-bubble-bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.contact-steam {
+  animation: steam-rise 2s ease-out infinite;
+}
+
+@keyframes steam-rise {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+
+/* Celebrating cheer state */
+.is-celebrating .cheer-arms {
+  animation: cheer-hop 0.5s ease-in-out infinite alternate;
+  transform-origin: 100px 90px;
+}
+
+@keyframes cheer-hop {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-4px) scale(1.04); }
+}
+
+/* Flying Paper Airplane on Sent */
+.contact-avatar__plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  animation: plane-launch 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards;
+}
+
+@keyframes plane-launch {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.4) rotate(-30deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-30%, -60%) scale(1.1) rotate(15deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(60%, -130%) scale(1.2) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(160%, -240%) scale(0.6) rotate(65deg);
+  }
+}
+
+.contact-avatar__contrail {
+  position: absolute;
+  top: 15px;
+  left: -20px;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  transform: rotate(-35deg);
+  opacity: 0.6;
+}

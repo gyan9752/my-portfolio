@@ -293,8 +293,8 @@
 .contact__side {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-top: 18px;
+  gap: 24px;
+  padding-top: 10px;
 }
 
 .contact__mail {

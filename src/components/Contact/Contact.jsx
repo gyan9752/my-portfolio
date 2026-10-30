@@ -5,6 +5,7 @@ import { sendMessage } from '../../services/api';
 import { sound } from '../../services/sound';
 import SplitText from '../SplitText/SplitText';
 import Magnetic from '../Magnetic/Magnetic';
+import AvatarContactDesk from '../Avatars/AvatarContactDesk';
 import './Contact.css';
 
 const links = [
@@ -115,6 +116,8 @@ export default function Contact() {
         </form>
 
         <div className="contact__side">
+          <AvatarContactDesk status={status} />
+
           <a
             className="contact__mail"
             href={`mailto:${personal.email}`}

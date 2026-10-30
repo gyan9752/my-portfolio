@@ -5,6 +5,7 @@ import { sound } from '../../services/sound';
 import ParticleField from '../ParticleField/ParticleField';
 import SplitText from '../SplitText/SplitText';
 import Magnetic from '../Magnetic/Magnetic';
+import AvatarDeskCoder from '../Avatars/AvatarDeskCoder';
 import './Hero.css';
 
 export default function Hero({ ready, go, onOpenBooking }) {
@@ -48,6 +49,11 @@ export default function Hero({ ready, go, onOpenBooking }) {
           <p className="hero__tagline">
             Full Stack Developer specializing in high-performance React &amp; Next.js applications, robust Node.js backend architectures, and modern web experiences.
           </p>
+
+          {/* Animated Desk Coder Avatar */}
+          <div className="hero__avatar-wrap">
+            <AvatarDeskCoder onInteract={() => sound.playClick()} />
+          </div>
 
           <div className="hero__actions">
             <Magnetic>

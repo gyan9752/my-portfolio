@@ -100,6 +100,54 @@
   gap: 6px;
 }
 
+/* Live Time & Status HUD in Navbar */
+.nav__hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--muted);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nav__hud-radar {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: radar-blip 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes radar-blip {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.nav__hud-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__hud-city {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.nav__hud-time {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 /* Sound & Theme Controls in Navbar */
 .nav__tools {
   display: flex;
@@ -136,6 +184,45 @@
   color: var(--accent);
   border-color: rgba(var(--accent-rgb, 200, 255, 61), 0.4);
   background: rgba(var(--accent-rgb, 200, 255, 61), 0.12);
+}
+
+.nav__sound-btn {
+  gap: 5px;
+  padding: 0 8px;
+  width: auto;
+  min-width: 34px;
+  border-radius: 999px;
+}
+
+.nav__eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  padding-bottom: 1px;
+}
+
+.eq-bar {
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.nav__eq.is-playing .eq-bar {
+  animation: eq-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.nav__eq.is-playing .eq-bar--1 { animation-delay: 0s; height: 10px; }
+.nav__eq.is-playing .eq-bar--2 { animation-delay: 0.25s; height: 6px; }
+.nav__eq.is-playing .eq-bar--3 { animation-delay: 0.12s; height: 11px; }
+.nav__eq.is-playing .eq-bar--4 { animation-delay: 0.35s; height: 8px; }
+
+@keyframes eq-bounce {
+  0% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.45); }
 }
 
 .nav__theme-wrapper {
@@ -299,6 +386,12 @@
   transform: translate(2px, -2px);
 }
 
+@media (max-width: 900px) {
+  .nav__hud-city {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .nav {
     gap: 6px;
@@ -310,6 +403,10 @@
 }
 
 @media (max-width: 640px) {
+  .nav__hud {
+    display: none;
+  }
+
   .nav__link {
     padding: 8px 8px;
     font-size: 12.5px;

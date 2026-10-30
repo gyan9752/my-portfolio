@@ -267,9 +267,24 @@
   transform: none;
 }
 
+/* Avatar Workstation */
+.hero__avatar-wrap {
+  margin: 28px auto 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.15s;
+}
+
+.hero.is-ready .hero__avatar-wrap {
+  opacity: 1;
+  transform: none;
+}
+
 /* buttons */
 .hero__actions {
-  margin-top: 38px;
+  margin-top: 26px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

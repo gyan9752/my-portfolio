@@ -1,0 +1,191 @@
+/* frontend/src/components/Avatars/AvatarDeskCoder.css */
+.desk-coder {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
+  user-select: none;
+}
+
+.desk-coder__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Head and Body Bobbing subtly */
+.desk-coder__body {
+  animation: coder-nod 2.8s ease-in-out infinite alternate;
+  transform-origin: 140px 180px;
+}
+
+@keyframes coder-nod {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(1.5px) rotate(0.4deg); }
+  100% { transform: translateY(-1px) rotate(-0.4deg); }
+}
+
+/* Typing hands animation */
+.hand-type--l {
+  animation: type-arm-l 0.18s ease-in-out infinite alternate;
+  transform-origin: 102px 145px;
+}
+
+.hand-type--r {
+  animation: type-arm-r 0.18s ease-in-out infinite alternate 0.09s;
+  transform-origin: 178px 145px;
+}
+
+.hand-finger--l {
+  animation: finger-tap-l 0.18s ease-in-out infinite alternate;
+}
+
+.hand-finger--r {
+  animation: finger-tap-r 0.18s ease-in-out infinite alternate 0.09s;
+}
+
+@keyframes type-arm-l {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(-1.5px) rotate(-1deg); }
+}
+
+@keyframes type-arm-r {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(-1.5px) rotate(1deg); }
+}
+
+@keyframes finger-tap-l {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(1px, -2px); }
+}
+
+@keyframes finger-tap-r {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-1px, -2px); }
+}
+
+/* Coffee Steam */
+.steam--1 {
+  animation: steam-float 2s ease-out infinite;
+}
+
+.steam--2 {
+  animation: steam-float 2s ease-out infinite 0.9s;
+}
+
+@keyframes steam-float {
+  0% { opacity: 0; transform: translateY(0) scale(0.9); }
+  50% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-8px) scale(1.3); }
+}
+
+/* Floating Code Pills */
+.desk-coder__code-floaters {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+}
+
+.code-pill {
+  position: absolute;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(14, 14, 22, 0.85);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb, 200, 255, 61), 0.3);
+  animation: float-rise 3.2s ease-out infinite;
+  opacity: 0;
+}
+
+.code-pill--1 {
+  left: 10%;
+  top: 40px;
+  animation-delay: 0s;
+}
+
+.code-pill--2 {
+  right: 12%;
+  top: 30px;
+  animation-delay: 0.9s;
+}
+
+.code-pill--3 {
+  left: 18%;
+  top: 10px;
+  animation-delay: 1.8s;
+}
+
+.code-pill--4 {
+  right: 22%;
+  top: 15px;
+  animation-delay: 2.5s;
+}
+
+@keyframes float-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.85);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateY(-20px) scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-35px) scale(1.05);
+  }
+}
+
+/* Status Tag */
+.desk-coder__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: -6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(18, 18, 28, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.desk-coder__pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse-ring 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+@media (max-width: 900px) {
+  .desk-coder {
+    max-width: 260px;
+  }
+}

@@ -1,0 +1,123 @@
+/* frontend/src/components/Avatars/AvatarTimelineWalker.css */
+.timeline-walker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 70px;
+  height: 95px;
+  transform: translate(-50%, calc(var(--p, 0) * (100% - 95px)));
+  z-index: 20;
+  pointer-events: none;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-walker__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.6));
+}
+
+.timeline-walker__aura {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb, 200, 255, 61), 0.25) 0%, transparent 70%);
+  animation: walker-pulse 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes walker-pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.9; }
+}
+
+/* Walking stride animation */
+.walker-char {
+  animation: walker-bob 0.55s ease-in-out infinite alternate;
+  transform-origin: 50px 100px;
+}
+
+.walker-leg--l {
+  transform-origin: 43px 78px;
+  animation: walker-leg-swing 0.55s ease-in-out infinite alternate;
+}
+
+.walker-leg--r {
+  transform-origin: 57px 78px;
+  animation: walker-leg-swing 0.55s ease-in-out infinite alternate-reverse;
+}
+
+.walker-arm--l {
+  transform-origin: 32px 52px;
+  animation: walker-leg-swing 0.55s ease-in-out infinite alternate-reverse;
+}
+
+.walker-arm--r {
+  transform-origin: 68px 52px;
+  animation: walker-arm-swing 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes walker-bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes walker-leg-swing {
+  0% { transform: rotate(-22deg); }
+  100% { transform: rotate(22deg); }
+}
+
+@keyframes walker-arm-swing {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+/* Floating Status Bubble */
+.timeline-walker__bubble {
+  position: absolute;
+  top: -24px;
+  background: rgba(14, 14, 22, 0.9);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: bubble-float 2s ease-in-out infinite alternate;
+}
+
+.timeline-walker__pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+@keyframes bubble-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+@media (max-width: 720px) {
+  .timeline-walker {
+    left: 14px;
+    width: 55px;
+    height: 75px;
+    transform: translate(-50%, calc(var(--p, 0) * (100% - 75px)));
+  }
+
+  .timeline-walker__bubble {
+    display: none;
+  }
+}

@@ -1,0 +1,159 @@
+/* frontend/src/components/Avatars/FloatingMascot.css */
+.mascot {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 750;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  user-select: none;
+  animation: mascot-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mascot-fade-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Bubble */
+.mascot__bubble {
+  position: relative;
+  max-width: 200px;
+  background: rgba(14, 14, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 8px 30px 8px 12px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(var(--accent-rgb, 200, 255, 61), 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mascot__bubble:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.mascot__bubble p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.mascot__close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mascot__close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+/* Body Button */
+.mascot__body-btn {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: #0e0e16;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--accent-rgb, 200, 255, 61), 0.25);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  transition: transform 0.3s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.mascot__body-btn:hover {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.mascot__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Arm Wave */
+.mascot-arm-wave {
+  transform-origin: 36px 65px;
+  animation: wave-loop 1.8s ease-in-out infinite alternate;
+}
+
+.is-waving .mascot-arm-wave {
+  animation: wave-fast 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes wave-loop {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-14deg); }
+  100% { transform: rotate(8deg); }
+}
+
+@keyframes wave-fast {
+  0% { transform: rotate(-25deg); }
+  100% { transform: rotate(20deg); }
+}
+
+/* Docked Mini Button */
+.mascot-docked {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 750;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: rgba(14, 14, 22, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 12px rgba(var(--accent-rgb, 200, 255, 61), 0.3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.mascot-docked:hover {
+  transform: scale(1.1);
+}
+
+.mascot-docked__dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+@media (max-width: 640px) {
+  .mascot {
+    bottom: 16px;
+    right: 16px;
+  }
+  .mascot__bubble {
+    max-width: 170px;
+  }
+}

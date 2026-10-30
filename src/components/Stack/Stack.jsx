@@ -1,5 +1,6 @@
 import { orbitRings } from '../../data/portfolioData';
 import SplitText from '../SplitText/SplitText';
+import AvatarOrbitFloater from '../Avatars/AvatarOrbitFloater';
 import './Stack.css';
 
 export default function Stack() {
@@ -13,6 +14,7 @@ export default function Stack() {
       </div>
 
       <div className="stack__stage">
+        <AvatarOrbitFloater />
         <div className="stack__orbit">
           <div className="stack__core">
             <span>{'</>'}</span>

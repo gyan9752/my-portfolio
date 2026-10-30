@@ -11,6 +11,27 @@ export default function Navbar({ ready, go, onOpenBooking }) {
   const [isSoundOn, setIsSoundOn] = useState(() => sound.isSoundEnabled());
   const [activeTheme, setActiveTheme] = useState(() => getSavedTheme());
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [localTime, setLocalTime] = useState('');
+
+  // Live IST Clock (Noida, India)
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const timeStr = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        }).format(new Date());
+        setLocalTime(timeStr);
+      } catch (e) {
+        setLocalTime('');
+      }
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Subscribe to external sound and theme updates
   useEffect(() => {
@@ -92,6 +113,15 @@ export default function Navbar({ ready, go, onOpenBooking }) {
         <span>{personal.initials}</span>
       </button>
 
+      {/* Live Time & Status HUD */}
+      <div className="nav__hud" title="Gyanvendra • Noida, IN (IST)">
+        <span className="nav__hud-radar" />
+        <span className="nav__hud-content">
+          <span className="nav__hud-city">Noida, IN</span>
+          {localTime && <span className="nav__hud-time">{localTime}</span>}
+        </span>
+      </div>
+
       <nav className="nav__links">
         {navLinks.map(({ id, label }) => (
           <button
@@ -110,13 +140,19 @@ export default function Navbar({ ready, go, onOpenBooking }) {
         <div className="nav__tools">
           <button
             type="button"
-            className={`nav__tool-btn ${isSoundOn ? 'is-active' : ''}`}
+            className={`nav__tool-btn nav__sound-btn ${isSoundOn ? 'is-active' : ''}`}
             onClick={handleSoundToggle}
             onMouseEnter={() => sound.playHover()}
             title={isSoundOn ? 'Sound FX: On (Click to mute)' : 'Sound FX: Off (Click to unmute)'}
             aria-label="Toggle Sound Effects"
           >
-            {isSoundOn ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            {isSoundOn ? <Volume2 size={14} /> : <VolumeX size={14} />}
+            <span className={`nav__eq ${isSoundOn ? 'is-playing' : ''}`} aria-hidden="true">
+              <span className="eq-bar eq-bar--1" />
+              <span className="eq-bar eq-bar--2" />
+              <span className="eq-bar eq-bar--3" />
+              <span className="eq-bar eq-bar--4" />
+            </span>
           </button>
 
           <div className="nav__theme-wrapper">
